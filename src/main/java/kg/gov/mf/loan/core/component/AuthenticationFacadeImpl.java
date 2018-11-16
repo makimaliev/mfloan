@@ -2,6 +2,8 @@ package kg.gov.mf.loan.core.component;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,5 +21,21 @@ public class AuthenticationFacadeImpl implements AuthenticationFacade {
         {
             return authentication;
         }
+    }
+
+    @Override
+    public String getUser() {
+
+        if(getAuthentication().isAuthenticated())
+        {
+            return ((UserDetails) getAuthentication().getPrincipal()).getUsername();
+        }
+        return "System";
+    }
+
+    @Override
+    public String getIP() {
+
+        return ((WebAuthenticationDetails)getAuthentication().getDetails()).getRemoteAddress();
     }
 }

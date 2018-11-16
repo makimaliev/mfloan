@@ -5,8 +5,12 @@ import java.util.List;
 public interface GenericService<E>
 {
     void add(E entity);
-    void update(E entity);
-    void remove(E entity);
-    E getById(Long id);
     List<E> list();
+    List<E> list(int firstResult, int maxResults);
+    List<E> listByParam(String param);
+    List<E> listByParam(String param, int firstResult, int maxResults);
+    int count();
+    E getById(Long id);
+    E update(E entity);
+    void remove(E entity);
 }

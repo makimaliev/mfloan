@@ -26,6 +26,6 @@ public class LoggerServiceImpl extends GenericServiceImpl<MFLog> implements Logg
         log.setEntity(entity);
         log.setAction(action);
         log.setIp(ip);
-        dao.create(log);
+        dao.add(log);
     }
 }
